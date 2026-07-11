@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Reveal from '@/components/ui/Reveal';
 import Counter from '@/components/ui/Counter';
-import LogoMarquee from '@/components/ui/LogoMarquee';
 
 const values = [
   { title: 'Reliable', desc: 'Trustworthy insurance consultancy — your needs handled with precision and dependability.' },
@@ -11,13 +10,62 @@ const values = [
   { title: 'Expert Team', desc: 'Deep knowledge of the insurance system in Sri Lanka and beyond — solutions for your needs, budget and goals.' },
 ];
 
+/* Duotone brand icons — navy strokes with a sky accent, on a soft tile */
+const icons: Record<string, React.ReactNode> = {
+  vehicle: (
+    <svg viewBox="0 0 48 48" fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 28l3.5-9A4 4 0 0 1 15.2 16h17.6a4 4 0 0 1 3.7 3l3.5 9" stroke="#02205C" strokeWidth="2.6" />
+      <rect x="6" y="28" width="36" height="9" rx="3" stroke="#02205C" strokeWidth="2.6" />
+      <circle cx="14.5" cy="37" r="3.4" fill="#38A3E0" />
+      <circle cx="33.5" cy="37" r="3.4" fill="#38A3E0" />
+      <path d="M14 22h20" stroke="#38A3E0" strokeWidth="2.6" />
+    </svg>
+  ),
+  health: (
+    <svg viewBox="0 0 48 48" fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M24 40s-13-8.3-17-16.2C4 17 8 10.5 14.6 10.5c4 0 7 2.3 9.4 5.6 2.4-3.3 5.4-5.6 9.4-5.6C40 10.5 44 17 41 23.8 37 31.7 24 40 24 40z" stroke="#02205C" strokeWidth="2.6" />
+      <path d="M12 24h6l3-6 5 12 3.5-6H36" stroke="#38A3E0" strokeWidth="2.6" />
+    </svg>
+  ),
+  property: (
+    <svg viewBox="0 0 48 48" fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="9" y="12" width="18" height="28" rx="1.5" stroke="#02205C" strokeWidth="2.6" />
+      <path d="M27 20h10a2 2 0 0 1 2 2v18" stroke="#02205C" strokeWidth="2.6" />
+      <path d="M6 40h37" stroke="#02205C" strokeWidth="2.6" />
+      <path d="M14 18.5h3M19 18.5h3M14 24h3M19 24h3M14 29.5h3M19 29.5h3M32 26h3M32 31h3" stroke="#38A3E0" strokeWidth="2.4" />
+    </svg>
+  ),
+  pension: (
+    <svg viewBox="0 0 48 48" fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="24" cy="18" r="8" stroke="#02205C" strokeWidth="2.6" />
+      <path d="M24 13.5v4.8l3 2.2" stroke="#38A3E0" strokeWidth="2.4" />
+      <path d="M10 40c1.5-7 7-11 14-11s12.5 4 14 11" stroke="#02205C" strokeWidth="2.6" />
+      <path d="M31 32l3.2 3.2 5.8-6" stroke="#38A3E0" strokeWidth="2.6" />
+    </svg>
+  ),
+  home: (
+    <svg viewBox="0 0 48 48" fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 22L24 8l17 14" stroke="#38A3E0" strokeWidth="2.6" />
+      <path d="M11 20v18h26V20" stroke="#02205C" strokeWidth="2.6" />
+      <rect x="20" y="27" width="8" height="11" stroke="#02205C" strokeWidth="2.4" />
+    </svg>
+  ),
+  marine: (
+    <svg viewBox="0 0 48 48" fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 32l4-8h24l4 8" stroke="#02205C" strokeWidth="2.6" />
+      <path d="M24 24V10m0 0l8 8m-8-8l-8 8" stroke="#38A3E0" strokeWidth="2.6" />
+      <path d="M5 38c3 2.4 6 2.4 9 0s6-2.4 9 0 6 2.4 9 0 6-2.4 11 0" stroke="#02205C" strokeWidth="2.6" />
+    </svg>
+  ),
+};
+
 const services = [
-  { label: 'Vehicle Insurance', desc: 'Protect your ride with trusted vehicle insurance, compared across every leading insurer.', icon: '🚗' },
-  { label: 'Health Insurance', desc: 'The best health cover in Sri Lanka with affordable medical plans that fit your needs.', icon: '🩺' },
-  { label: 'Property Insurance', desc: 'Safeguard your buildings and assets from damage or loss.', icon: '🏢' },
-  { label: 'Pension Plan', desc: 'Secure your future with steady income protection after retirement.', icon: '🌅' },
-  { label: 'Home Insurance', desc: 'Secure your home and belongings with the right home cover.', icon: '🏠' },
-  { label: 'Marine Insurance', desc: 'Comprehensive cover for cargo and marine operations.', icon: '🚢' },
+  { label: 'Vehicle Insurance', desc: 'Protect your ride with trusted vehicle insurance, compared across every leading insurer.', icon: 'vehicle' },
+  { label: 'Health Insurance', desc: 'The best health cover in Sri Lanka with affordable medical plans that fit your needs.', icon: 'health' },
+  { label: 'Property Insurance', desc: 'Safeguard your buildings and assets from damage or loss.', icon: 'property' },
+  { label: 'Pension Plan', desc: 'Secure your future with steady income protection after retirement.', icon: 'pension' },
+  { label: 'Home Insurance', desc: 'Secure your home and belongings with the right home cover.', icon: 'home' },
+  { label: 'Marine Insurance', desc: 'Comprehensive cover for cargo and marine operations.', icon: 'marine' },
 ];
 
 const features = [
@@ -29,22 +77,60 @@ const features = [
   { title: 'Nationwide Coverage', desc: 'Protection wherever you are in Sri Lanka.' },
 ];
 
-const partners = [
-  { src: '/partners/aia.jpg',         alt: 'AIA Insurance' },
-  { src: '/partners/allianz.jpg',     alt: 'Allianz Insurance' },
-  { src: '/partners/amana.jpg',       alt: 'Amana Takaful' },
-  { src: '/partners/ceylinco.jpg',    alt: 'Ceylinco Insurance' },
-  { src: '/partners/continental.jpg', alt: 'Continental Insurance' },
-  { src: '/partners/hnb.jpg',         alt: 'HNB Insurance' },
-  { src: '/partners/lolc.jpg',        alt: 'LOLC Insurance' },
-  { src: '/partners/softlogic.jpg',   alt: 'Softlogic Insurance' },
-  { src: '/partners/slic.jpg',        alt: 'Sri Lanka Insurance' },
-  { src: '/partners/union.jpg',       alt: 'Union Assurance' },
-  { src: '/partners/fairfirst.jpg',   alt: 'Fairfirst Insurance' },
-  { src: '/partners/orient.jpg',      alt: 'Orient Insurance' },
-  { src: '/partners/mbsl.jpg',        alt: 'MBSL Insurance' },
-  { src: '/partners/peoples.jpg',     alt: "People's Insurance" },
+const lifePartners = [
+  { src: '/partners/life/aia.jpg',            alt: 'AIA Insurance' },
+  { src: '/partners/life/slic-life.webp',     alt: 'SLIC Life' },
+  { src: '/partners/life/softlogic-life.webp', alt: 'Softlogic Life' },
+  { src: '/partners/life/ceylinco-life.webp', alt: 'Ceylinco Life' },
+  { src: '/partners/life/continental-life.jpg', alt: 'Continental Insurance Life' },
+  { src: '/partners/life/amana-life.jpg',     alt: 'Amana Takaful Life' },
+  { src: '/partners/life/union.webp',         alt: 'Union Assurance' },
+  { src: '/partners/life/hnb-assurance.webp', alt: 'HNB Assurance' },
+  { src: '/partners/life/janashakthi.webp',   alt: 'Janashakthi Life' },
+  { src: '/partners/life/lolc-life.webp',     alt: 'LOLC Life Assurance' },
+  { src: '/partners/life/sanasa-life.webp',   alt: 'Sanasa Life Insurance' },
+  { src: '/partners/life/coop-life.webp',     alt: 'COOP Life' },
 ];
+
+const generalPartners = [
+  { src: '/partners/general/coop.webp',         alt: 'COOP Insurance' },
+  { src: '/partners/general/fairfirst.webp',    alt: 'Fairfirst Insurance' },
+  { src: '/partners/general/hnb-general.webp',  alt: 'HNB General Insurance' },
+  { src: '/partners/general/lolc-general.webp', alt: 'LOLC General Insurance' },
+  { src: '/partners/general/ceylinco-vip.webp', alt: 'Ceylinco VIP' },
+  { src: '/partners/general/continental.jpg',   alt: 'Continental Insurance' },
+  { src: '/partners/general/mbsl.webp',         alt: 'MBSL Insurance' },
+  { src: '/partners/general/orient.jpg',        alt: 'Orient Insurance' },
+  { src: '/partners/general/peoples.jpg',       alt: "People's Insurance" },
+  { src: '/partners/general/slic.webp',         alt: 'Sri Lanka Insurance' },
+  { src: '/partners/general/allianz.jpg',       alt: 'Allianz Insurance' },
+];
+
+/* Navy showcase panel with white logo tiles — the "cool design" treatment */
+function PartnerPanel({ title, logos }: { title: string; logos: { src: string; alt: string }[] }) {
+  return (
+    <div className="mb-12 last:mb-0">
+      <div className="text-center mb-7">
+        <span className="inline-block font-body text-[11px] font-bold tracking-widest uppercase bg-brand-400 text-white rounded-full px-5 py-1.5 mb-4">
+          Insurance
+        </span>
+        <h3 className="font-display text-brand-900 leading-none" style={{ fontSize: 'clamp(30px, 4vw, 56px)' }}>
+          {title}
+        </h3>
+      </div>
+      <div className="bg-brand-900 rounded-3xl p-6 md:p-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+          {logos.map((l) => (
+            <div key={l.src} className="bg-white rounded-2xl aspect-square flex items-center justify-center p-4 hover:-translate-y-1 hover:shadow-brand transition-all duration-300">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={l.src} alt={l.alt} className="max-h-full max-w-full object-contain" loading="lazy" decoding="async" width={160} height={160} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const faqs = [
   {
@@ -98,10 +184,6 @@ export default function Home() {
 
         <div className="relative h-full max-w-[1400px] mx-auto px-6 md:px-8 py-12 lg:py-0 grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center">
           <Reveal>
-            <p className="inline-flex items-center gap-2 font-body text-[11px] tracking-widest3 text-brand uppercase mb-5 bg-white border border-gray-800 rounded-full px-4 py-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse" />
-              Insurance broker in Sri Lanka
-            </p>
             <h1 className="font-display text-brand-900 leading-[0.98]" style={{ fontSize: 'clamp(42px, 6vw, 84px)' }}>
               YOUR TRUSTED<br />INSURANCE BROKER<br />
               <span className="relative inline-block">
@@ -139,37 +221,38 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* Arch-framed photo */}
+          {/* Floating composite — cutout artwork shown whole, never cropped */}
           <Reveal delay={0.1} y={20} className="hidden sm:block">
-            <div className="relative mx-auto max-w-[420px] lg:max-w-[460px]">
-              {/* dashed ring accent behind the arch */}
-              <div aria-hidden className="absolute -inset-5 rounded-t-full rounded-b-[2.5rem] border-2 border-dashed border-brand-200" />
+            <div className="relative mx-auto max-w-[420px] lg:max-w-[500px]">
+              {/* soft glow + dashed ring behind the artwork */}
+              <div aria-hidden className="absolute inset-x-6 top-10 bottom-6 rounded-full bg-brand-100 blur-2xl opacity-80" />
+              <div aria-hidden className="absolute -inset-2 rounded-full border-2 border-dashed border-brand-200/70" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/img/hero-home.jpg"
-                alt="A protected family home at dusk"
-                className="relative w-full h-[400px] lg:h-[480px] object-cover rounded-t-full rounded-b-[2rem] shadow-brand"
+                src="/img/hero-family.webp"
+                alt="Everything Araksha protects — your family, home, vehicle, health and travel, all under one umbrella"
+                className="relative w-full h-[420px] lg:h-[500px] object-contain drop-shadow-[0_24px_45px_rgba(2,32,92,0.18)]"
                 fetchPriority="high"
                 decoding="async"
-                width={1200}
-                height={800}
+                width={1365}
+                height={1536}
               />
               {/* floating chips */}
-              <div className="absolute top-16 -left-8 bg-white rounded-2xl shadow-lg border border-gray-800 px-4 py-2.5 flex items-center gap-2.5">
+              <div className="absolute top-14 -left-4 lg:-left-8 bg-white rounded-2xl shadow-lg border border-gray-800 px-4 py-2.5 flex items-center gap-2.5">
                 <span className="text-lg">🛡️</span>
                 <div className="leading-tight">
                   <p className="font-body text-xs font-bold text-chalk">IRCSL Licensed</p>
                   <p className="font-body text-[10px] text-gray-500">Life & General broking</p>
                 </div>
               </div>
-              <div className="absolute bottom-20 -right-6 bg-white rounded-2xl shadow-lg border border-gray-800 px-4 py-2.5 flex items-center gap-2.5">
+              <div className="absolute top-40 -right-2 lg:-right-6 bg-white rounded-2xl shadow-lg border border-gray-800 px-4 py-2.5 flex items-center gap-2.5">
                 <span className="text-lg">⭐</span>
                 <div className="leading-tight">
                   <p className="font-body text-xs font-bold text-chalk">MDRT advisors</p>
                   <p className="font-body text-[10px] text-gray-500">Award-winning team</p>
                 </div>
               </div>
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-max bg-brand-900 text-white rounded-full shadow-lg px-5 py-2.5 flex items-center gap-2">
+              <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-max bg-brand-900 text-white rounded-full shadow-lg px-5 py-2.5 flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-brand-light animate-pulse" />
                 <p className="font-body text-xs font-semibold">Part of the DSI Samson Group</p>
               </div>
@@ -261,7 +344,7 @@ export default function Home() {
               <Reveal key={s.label} delay={(i % 3) * 0.07} y={16}>
                 <Link href="/get-quote"
                   className="group block bg-white rounded-2xl border border-gray-800 p-7 h-full hover:border-brand/50 hover:shadow-brand transition-all duration-300">
-                  <div className="text-3xl mb-4">{s.icon}</div>
+                  <div className="h-14 w-14 rounded-2xl bg-brand-50 p-2.5 mb-4 group-hover:scale-105 transition-transform">{icons[s.icon]}</div>
                   <h3 className="font-heading text-xl text-chalk mb-2 group-hover:text-brand transition-colors">{s.label}</h3>
                   <p className="font-body text-sm text-gray-500 leading-relaxed mb-4">{s.desc}</p>
                   <span className="font-body text-[11px] tracking-widest uppercase text-brand flex items-center gap-2 group-hover:gap-3 transition-all">
@@ -297,17 +380,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Partners ── */}
-      <section className="py-16 md:py-20 border-b border-gray-800">
+      {/* ── Partners — Life & General showcase panels ── */}
+      <section className="py-16 md:py-24 border-b border-gray-800">
         <div className="max-w-[1400px] mx-auto px-6 md:px-8">
-          <Reveal>
-            <p className="font-body text-xs tracking-widest3 text-brand uppercase mb-10 text-center">
-              Our life & general insurance partners
-            </p>
-          </Reveal>
-          <LogoMarquee logos={partners} />
-          <div className="text-center mt-8">
-            <Link href="/partners" className="font-body text-sm text-brand hover:underline">See all partners →</Link>
+          <Reveal><PartnerPanel title="OUR LIFE INSURANCE PARTNERS" logos={lifePartners} /></Reveal>
+          <Reveal><PartnerPanel title="OUR GENERAL INSURANCE PARTNERS" logos={generalPartners} /></Reveal>
+          <div className="text-center mt-10">
+            <Link href="/partners" className="font-body text-sm text-brand hover:underline">Learn more about our partners →</Link>
           </div>
         </div>
       </section>
