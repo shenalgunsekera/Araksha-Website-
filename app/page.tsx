@@ -85,16 +85,33 @@ const testimonials = [
 export default function Home() {
   return (
     <main className="bg-ink">
-      {/* ── Hero — split layout, distinct from Ceilao's full-bleed ── */}
-      <section className="relative overflow-hidden bg-brand-radial">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-8 py-14 md:py-24 grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center">
+      {/* ── Hero — arch-framed photo + floating chips; fills the viewport
+             below the 100px header stack exactly on desktop ── */}
+      <section className="relative overflow-hidden bg-brand-radial lg:h-[calc(100svh-100px)] lg:min-h-[600px]">
+        {/* decorative dot grid + blob */}
+        <div
+          aria-hidden
+          className="absolute inset-y-0 left-0 w-1/2 opacity-[0.35]"
+          style={{ backgroundImage: 'radial-gradient(rgba(37,94,171,0.35) 1.2px, transparent 1.2px)', backgroundSize: '26px 26px' }}
+        />
+        <div aria-hidden className="absolute -top-24 -right-24 h-[420px] w-[420px] rounded-full bg-brand-100 blur-3xl opacity-70" />
+
+        <div className="relative h-full max-w-[1400px] mx-auto px-6 md:px-8 py-12 lg:py-0 grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center">
           <Reveal>
-            <p className="font-body text-xs tracking-widest3 text-brand uppercase mb-5">Insurance broker in Sri Lanka</p>
-            <h1 className="font-display text-brand-900 leading-[0.98]" style={{ fontSize: 'clamp(42px, 6.5vw, 88px)' }}>
+            <p className="inline-flex items-center gap-2 font-body text-[11px] tracking-widest3 text-brand uppercase mb-5 bg-white border border-gray-800 rounded-full px-4 py-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse" />
+              Insurance broker in Sri Lanka
+            </p>
+            <h1 className="font-display text-brand-900 leading-[0.98]" style={{ fontSize: 'clamp(42px, 6vw, 84px)' }}>
               YOUR TRUSTED<br />INSURANCE BROKER<br />
-              <span className="bg-brand-gradient bg-clip-text text-transparent">IN SRI LANKA</span>
+              <span className="relative inline-block">
+                <span className="bg-brand-gradient bg-clip-text text-transparent">IN SRI LANKA</span>
+                <svg aria-hidden className="absolute -bottom-2 left-0 w-full" height="10" viewBox="0 0 300 10" preserveAspectRatio="none">
+                  <path d="M3 7 C 60 2, 240 2, 297 6" stroke="#38A3E0" strokeWidth="4" strokeLinecap="round" fill="none" />
+                </svg>
+              </span>
             </h1>
-            <p className="mt-6 font-body text-base md:text-lg text-gray-400 leading-relaxed max-w-xl">
+            <p className="mt-7 font-body text-base md:text-lg text-gray-400 leading-relaxed max-w-xl">
               Consult Araksha to be your insurance advisor and receive exceptional comparisons
               in life insurance, vehicle insurance and more — one request, every leading insurer, zero pressure.
             </p>
@@ -122,24 +139,39 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} y={20}>
-            <div className="relative">
+          {/* Arch-framed photo */}
+          <Reveal delay={0.1} y={20} className="hidden sm:block">
+            <div className="relative mx-auto max-w-[420px] lg:max-w-[460px]">
+              {/* dashed ring accent behind the arch */}
+              <div aria-hidden className="absolute -inset-5 rounded-t-full rounded-b-[2.5rem] border-2 border-dashed border-brand-200" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/img/hero-home.jpg"
                 alt="A protected family home at dusk"
-                className="w-full h-[320px] md:h-[460px] object-cover rounded-3xl shadow-brand"
+                className="relative w-full h-[400px] lg:h-[480px] object-cover rounded-t-full rounded-b-[2rem] shadow-brand"
                 fetchPriority="high"
                 decoding="async"
                 width={1200}
                 height={800}
               />
-              <div className="absolute -bottom-5 left-6 right-6 sm:left-10 sm:right-auto bg-white rounded-2xl shadow-lg border border-gray-800 px-5 py-4 flex items-center gap-4">
-                <div className="h-11 w-11 rounded-full bg-brand-gradient text-white flex items-center justify-center text-lg shrink-0">🛡️</div>
-                <div>
-                  <p className="font-body text-sm font-bold text-chalk">Life & General insurance</p>
-                  <p className="font-body text-xs text-gray-500">Licensed broker · Regulated by IRCSL</p>
+              {/* floating chips */}
+              <div className="absolute top-16 -left-8 bg-white rounded-2xl shadow-lg border border-gray-800 px-4 py-2.5 flex items-center gap-2.5">
+                <span className="text-lg">🛡️</span>
+                <div className="leading-tight">
+                  <p className="font-body text-xs font-bold text-chalk">IRCSL Licensed</p>
+                  <p className="font-body text-[10px] text-gray-500">Life & General broking</p>
                 </div>
+              </div>
+              <div className="absolute bottom-20 -right-6 bg-white rounded-2xl shadow-lg border border-gray-800 px-4 py-2.5 flex items-center gap-2.5">
+                <span className="text-lg">⭐</span>
+                <div className="leading-tight">
+                  <p className="font-body text-xs font-bold text-chalk">MDRT advisors</p>
+                  <p className="font-body text-[10px] text-gray-500">Award-winning team</p>
+                </div>
+              </div>
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-max bg-brand-900 text-white rounded-full shadow-lg px-5 py-2.5 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-brand-light animate-pulse" />
+                <p className="font-body text-xs font-semibold">Part of the DSI Samson Group</p>
               </div>
             </div>
           </Reveal>
