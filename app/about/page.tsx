@@ -1,110 +1,128 @@
 import Link from 'next/link';
 import Reveal from '@/components/ui/Reveal';
 
-export const metadata = { title: 'About Us | Samson Insurance Brokers' };
+export const metadata = { title: 'About Araksha | Samson Insurance Brokers' };
 
-// TODO(Araksha): replace with the real leadership team — names, roles and bios below are placeholders.
-const team = [
+const values = [
+  { title: 'Reliable', desc: 'We are committed to offering trustworthy insurance consultancy and assure you that your insurance needs will be handled with precision and dependability.' },
+  { title: 'Customer Centric', desc: 'We are dedicated to maintaining strong relationships by understanding your specific needs, while consistently aiming to go past your expectations.' },
+  { title: 'Transparent', desc: 'Araksha believes in clear and open communications. This transparent approach maintains trust and helps you to make informed decisions.' },
+  { title: 'Partnership', desc: 'We partner with top insurance companies in Sri Lanka giving you diverse options — helping you navigate policies and regulations to secure cost-effective solutions.' },
+  { title: 'Expert Team', desc: 'Araksha has deep knowledge of the insurance system in Sri Lanka and beyond — providing solutions matched to your needs, budget and objectives.' },
+];
+
+const directors = [
   {
-    name: 'Team Member One',
+    name: 'Mr. Nimal Balawardhane',
+    role: 'Executive Director / CEO / Principal Officer',
+    photo: '/team/nimal-balawardhane.jpg',
+  },
+  {
+    name: 'Ms. Nelani Rajapaksa',
     role: 'Director',
-    bio: 'Bio to be provided — a short profile covering experience, qualifications and areas of expertise within the insurance industry.',
+    photo: '/team/nelani-rajapaksa.jpg',
   },
   {
-    name: 'Team Member Two',
-    role: 'Principal Officer',
-    bio: 'Bio to be provided — a short profile covering experience, qualifications and areas of expertise within the insurance industry.',
-  },
-  {
-    name: 'Team Member Three',
-    role: 'Consultant',
-    bio: 'Bio to be provided — a short profile covering experience, qualifications and areas of expertise within the insurance industry.',
-  },
-  {
-    name: 'Team Member Four',
-    role: 'Head of Sales & Operations',
-    bio: 'Bio to be provided — a short profile covering experience, qualifications and areas of expertise within the insurance industry.',
+    name: 'Mr. Thusitha Rajapaksa',
+    role: 'Director',
+    photo: '/team/thusitha-rajapaksa.jpg',
   },
 ];
-
-// TODO(Araksha): replace with the real group companies (or remove this section if not applicable).
-const group = [
-  { name: 'Group Company One', desc: 'Description to be provided — a brief overview of this group company and what it does.' },
-  { name: 'Group Company Two', desc: 'Description to be provided — a brief overview of this group company and what it does.' },
-  { name: 'Group Company Three', desc: 'Description to be provided — a brief overview of this group company and what it does.' },
-];
-
-function initials(name: string) {
-  return name.replace(/^(Dr\.|Mr\.|Ms\.)\s*/, '').split(' ').map((w) => w[0]).slice(0, 2).join('');
-}
 
 export default function AboutPage() {
   return (
-    <main className="bg-ink pt-16">
+    <main className="bg-ink">
       {/* Header */}
-      <section className="relative overflow-hidden border-b border-gray-800 bg-gray-100">
-        <div className="absolute inset-0 bg-brand-radial pointer-events-none" />
-        <div className="relative max-w-[1600px] mx-auto px-6 md:px-12 py-24 md:py-32">
+      <section className="bg-brand-radial border-b border-gray-800">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-8 py-16 md:py-24">
           <Reveal>
-            <p className="font-body text-xs tracking-widest3 text-brand uppercase mb-5">About Araksha</p>
-            <h1 className="font-display text-chalk leading-none" style={{ fontSize: 'clamp(48px, 8vw, 116px)' }}>
-              YOUR TRUSTED<br /><span className="bg-brand-gradient bg-clip-text text-transparent">INSURANCE PARTNER.</span>
+            <p className="font-body text-xs tracking-widest3 text-brand uppercase mb-4">Home / About Araksha</p>
+            <h1 className="font-display text-brand-900 leading-none" style={{ fontSize: 'clamp(44px, 7vw, 100px)' }}>
+              ABOUT <span className="bg-brand-gradient bg-clip-text text-transparent">ARAKSHA</span>
             </h1>
+            <p className="mt-5 font-body text-base md:text-lg text-gray-400 max-w-2xl leading-relaxed">
+              Samson Insurance Brokers — widely known as Araksha — is part of the DSI Samson Group
+              with over 60 years of history, providing exceptional insurance services since 2008.
+            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Welcome / intro */}
-      <section className="py-24 md:py-32 border-b border-gray-800">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12 grid lg:grid-cols-[1fr_1.2fr] gap-16">
-          <Reveal>
-            <h2 className="font-heading text-3xl md:text-4xl leading-tight text-chalk">
-              Welcome to Samson Insurance Brokers — tailored insurance solutions, safeguarding tomorrow.
+      {/* Why choose us */}
+      <section className="py-20 md:py-24 border-b border-gray-800">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-8">
+          <Reveal className="mb-12">
+            <p className="font-body text-xs tracking-widest3 text-brand uppercase mb-4">Why choose us</p>
+            <h2 className="font-display text-brand-900 leading-none" style={{ fontSize: 'clamp(34px, 5vw, 68px)' }}>
+              TRUSTED INSURANCE SOLUTIONS PARTNER
             </h2>
           </Reveal>
-          <Reveal delay={0.12}>
-            <div className="font-body text-base md:text-lg text-gray-400 leading-relaxed space-y-5">
-              <p>
-                Samson Insurance Brokers (Pvt) Ltd is the newest addition to our esteemed group of companies. Based in Sri Lanka,
-                our mission is to provide tailored insurance solutions to meet your unique needs.
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {values.map((v, i) => (
+              <Reveal key={v.title} delay={(i % 3) * 0.07} y={16}>
+                <div className="bg-white rounded-2xl border border-gray-800 p-7 h-full hover:shadow-brand hover:-translate-y-1 transition-all duration-300">
+                  <div className="h-10 w-10 rounded-xl bg-brand-50 text-brand flex items-center justify-center font-display text-lg mb-4">
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <h3 className="font-heading text-xl text-chalk mb-2">{v.title}</h3>
+                  <p className="font-body text-sm text-gray-500 leading-relaxed">{v.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission / Vision */}
+      <section className="py-20 md:py-24 bg-gray-900 border-b border-gray-800">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-4">
+          <Reveal>
+            <div className="bg-white rounded-3xl border border-gray-800 p-8 md:p-10 h-full">
+              <p className="font-body text-xs tracking-widest3 text-brand uppercase mb-4">Our Mission</p>
+              <p className="font-heading text-xl md:text-2xl text-chalk leading-relaxed">
+                To provide personal, professional and trustworthy advice, services and products in life &
+                general insurance — building strong networks with our stakeholders so our clients receive
+                unparalleled support and solutions that truly meet their needs.
               </p>
-              <p>
-                Leveraging the expertise and resources of our established group, we are committed to delivering comprehensive
-                coverage options with exceptional service. Our experienced team guides you through every step of the insurance
-                process with integrity and personalised care.
-              </p>
-              <p>
-                We are <span className="text-brand font-semibold">licensed to provide brokering services for both life and general
-                insurance</span> from all insurance providers — helping you achieve peace of mind through reliable, innovative cover.
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="bg-brand-900 text-white rounded-3xl p-8 md:p-10 h-full">
+              <p className="font-body text-xs tracking-widest3 text-brand-light uppercase mb-4">Our Vision</p>
+              <p className="font-heading text-xl md:text-2xl leading-relaxed">
+                To become the most trusted and respected specialists in the life & general insurance
+                industries — earning your confidence through our commitment to excellence.
               </p>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Leadership */}
-      <section className="py-24 bg-gray-100 border-b border-gray-800">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-          <Reveal>
-            <p className="font-body text-xs tracking-widest3 text-brand uppercase mb-4">Leadership</p>
-            <h2 className="font-display text-chalk leading-none mb-14" style={{ fontSize: 'clamp(40px, 6vw, 84px)' }}>
-              THE TEAM BEHIND ARAKSHA
+      {/* Directors */}
+      <section className="py-20 md:py-28 border-b border-gray-800">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-8">
+          <Reveal className="text-center mb-14">
+            <p className="font-body text-xs tracking-widest3 text-brand uppercase mb-4">Our team</p>
+            <h2 className="font-display text-brand-900 leading-none" style={{ fontSize: 'clamp(34px, 5vw, 68px)' }}>
+              MEET OUR DIRECTORS
             </h2>
           </Reveal>
-          <div className="grid md:grid-cols-2 gap-px bg-gray-800 border border-gray-800">
-            {team.map((m, i) => (
-              <Reveal key={m.name} delay={(i % 2) * 0.1} className="bg-gray-100">
-                <div className="p-8 md:p-10 h-full">
-                  <div className="flex items-center gap-4 mb-5">
-                    <div className="h-14 w-14 rounded-full bg-brand-gradient text-white flex items-center justify-center font-display text-xl shrink-0">
-                      {initials(m.name)}
-                    </div>
-                    <div>
-                      <h3 className="font-heading text-xl text-chalk leading-tight">{m.name}</h3>
-                      <p className="font-body text-xs tracking-widest uppercase text-brand mt-1">{m.role}</p>
-                    </div>
-                  </div>
-                  <p className="font-body text-sm text-gray-500 leading-relaxed">{m.bio}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {directors.map((d, i) => (
+              <Reveal key={d.name} delay={i * 0.08} y={18}>
+                <div className="group text-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={d.photo}
+                    alt={d.name}
+                    className="w-full aspect-[5/6] object-cover object-top rounded-3xl border border-gray-800 group-hover:shadow-brand transition-shadow duration-300"
+                    loading="lazy"
+                    decoding="async"
+                    width={640}
+                    height={766}
+                  />
+                  <h3 className="font-heading text-lg text-chalk mt-5">{d.name}</h3>
+                  <p className="font-body text-xs tracking-widest uppercase text-brand mt-1.5 leading-relaxed">{d.role}</p>
                 </div>
               </Reveal>
             ))}
@@ -112,51 +130,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* About our group */}
-      <section className="py-24 border-b border-gray-800">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-          <Reveal>
-            <p className="font-body text-xs tracking-widest3 text-brand uppercase mb-4">Our group</p>
-            <h2 className="font-display text-chalk leading-none mb-4" style={{ fontSize: 'clamp(40px, 6vw, 84px)' }}>
-              PART OF SOMETHING BIGGER
-            </h2>
-            <p className="font-body text-base text-gray-500 max-w-2xl mb-14">
-              Samson Insurance Brokers is backed by a diversified group spanning migration, logistics, talent, manufacturing and finance.
-            </p>
-          </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-800 border border-gray-800">
-            {group.map((g, i) => (
-              <Reveal key={g.name} delay={(i % 3) * 0.08} y={18} className="bg-ink">
-                <div className="group p-8 h-full hover:bg-gray-100 transition-colors duration-200">
-                  <h3 className="font-heading text-lg text-chalk mb-3 group-hover:text-brand-600 transition-colors">{g.name}</h3>
-                  <p className="font-body text-sm text-gray-500 leading-relaxed">{g.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section className="py-28">
-        <Reveal className="max-w-[1100px] mx-auto px-6 text-center">
-          <h2 className="font-display text-chalk leading-none mb-6" style={{ fontSize: 'clamp(40px, 6vw, 92px)' }}>
-            LET’S <span className="bg-brand-gradient bg-clip-text text-transparent">TALK COVER.</span>
+      {/* CTA */}
+      <section className="py-20">
+        <Reveal className="max-w-[900px] mx-auto px-6 text-center">
+          <h2 className="font-display text-brand-900 leading-none mb-5" style={{ fontSize: 'clamp(34px, 5vw, 72px)' }}>
+            LET&apos;S <span className="bg-brand-gradient bg-clip-text text-transparent">TALK COVER.</span>
           </h2>
-          <p className="font-body text-lg text-gray-500 max-w-2xl mx-auto mb-10">
-            Speak to an independent Araksha broker today — no obligation, no jargon, just honest advice.
+          <p className="font-body text-base text-gray-500 max-w-xl mx-auto mb-8">
+            Speak to an Araksha advisor today — no obligation, no jargon, just honest advice.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/get-quote" className="inline-flex items-center px-10 py-4 bg-brand-gradient text-white font-display text-base tracking-widest uppercase transition-transform hover:-translate-y-0.5">
-              Get a Quote
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link href="/get-quote" className="btn-brand px-9 py-4">Get a Quote</Link>
+            <Link href="/contact" className="inline-flex items-center px-8 py-4 rounded-full border border-brand text-brand font-body text-xs font-semibold tracking-widest uppercase hover:bg-brand hover:text-white transition-colors">
+              Contact us
             </Link>
-            <a href="tel:+94112131800" className="inline-flex items-center px-8 py-4 border border-brand text-brand font-display text-base tracking-widest uppercase hover:bg-brand hover:text-white transition-colors">
-              Call 011 213 1800
-            </a>
           </div>
-          <p className="mt-8 font-body text-sm text-gray-500">
-            hello@araksha.lk · Colombo, Sri Lanka
-          </p>
         </Reveal>
       </section>
     </main>
