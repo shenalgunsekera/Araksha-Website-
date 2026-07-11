@@ -45,10 +45,10 @@ const ICONS: { d: React.ReactNode; pos: string; size: number; delay: string }[] 
 
 export default function VideoScroll() {
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden bg-[#160a03]">
+    <section className="relative h-screen min-h-[600px] overflow-hidden bg-[#04102E]">
       {/* Warm brand gradient base */}
       <div className="absolute inset-0 bg-brand-gradient opacity-90" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#160a03]/70 via-[#2A1206]/30 to-white" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#04102E]/70 via-[#0A1A3E]/30 to-white" />
 
       {/* Floating insurance icons — edges only, low opacity */}
       <div className="absolute inset-0 z-10 pointer-events-none">
@@ -76,7 +76,7 @@ export default function VideoScroll() {
       {/* Centre spotlight so the words are always crisp and legible */}
       <div
         className="absolute inset-0 z-20 pointer-events-none"
-        style={{ background: 'radial-gradient(60% 50% at 50% 45%, rgba(22,10,3,0.55), transparent 70%)' }}
+        style={{ background: 'radial-gradient(60% 50% at 50% 45%, rgba(4,16,46,0.55), transparent 70%)' }}
       />
 
       {/* Centered title */}
