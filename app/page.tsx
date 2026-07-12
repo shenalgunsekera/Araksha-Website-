@@ -221,42 +221,18 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* Floating composite — cutout artwork shown whole, never cropped */}
+          {/* Hero composite — shown whole and clean, no overlays */}
           <Reveal delay={0.1} y={20} className="hidden sm:block">
-            <div className="relative mx-auto max-w-[420px] lg:max-w-[500px]">
-              {/* soft glow + dashed ring behind the artwork */}
-              <div aria-hidden className="absolute inset-x-6 top-10 bottom-6 rounded-full bg-brand-100 blur-2xl opacity-80" />
-              <div aria-hidden className="absolute -inset-2 rounded-full border-2 border-dashed border-brand-200/70" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/img/hero-family.webp"
-                alt="Everything Araksha protects — your family, home, vehicle, health and travel, all under one umbrella"
-                className="relative w-full h-[420px] lg:h-[500px] object-contain drop-shadow-[0_24px_45px_rgba(2,32,92,0.18)]"
-                fetchPriority="high"
-                decoding="async"
-                width={1365}
-                height={1536}
-              />
-              {/* floating chips */}
-              <div className="absolute top-14 -left-4 lg:-left-8 bg-white rounded-2xl shadow-lg border border-gray-800 px-4 py-2.5 flex items-center gap-2.5">
-                <span className="text-lg">🛡️</span>
-                <div className="leading-tight">
-                  <p className="font-body text-xs font-bold text-chalk">IRCSL Licensed</p>
-                  <p className="font-body text-[10px] text-gray-500">Life & General broking</p>
-                </div>
-              </div>
-              <div className="absolute top-40 -right-2 lg:-right-6 bg-white rounded-2xl shadow-lg border border-gray-800 px-4 py-2.5 flex items-center gap-2.5">
-                <span className="text-lg">⭐</span>
-                <div className="leading-tight">
-                  <p className="font-body text-xs font-bold text-chalk">MDRT advisors</p>
-                  <p className="font-body text-[10px] text-gray-500">Award-winning team</p>
-                </div>
-              </div>
-              <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-max bg-brand-900 text-white rounded-full shadow-lg px-5 py-2.5 flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-brand-light animate-pulse" />
-                <p className="font-body text-xs font-semibold">Part of the DSI Samson Group</p>
-              </div>
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/img/hero-family.webp"
+              alt="Everything Araksha protects — your family, home, vehicle, health and travel, all under one umbrella"
+              className="mx-auto w-full max-w-[440px] lg:max-w-[520px] h-[420px] lg:h-[500px] object-contain"
+              fetchPriority="high"
+              decoding="async"
+              width={1365}
+              height={1536}
+            />
           </Reveal>
         </div>
       </section>
