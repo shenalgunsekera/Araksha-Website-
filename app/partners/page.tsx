@@ -35,7 +35,8 @@ const general = [
 function Panel({ title, items }: { title: string; items: { name: string; src: string }[] }) {
   return (
     <div className="mb-14 last:mb-0">
-      <h2 className="font-display text-brand-900 text-center leading-none mb-7" style={{ fontSize: 'clamp(30px, 4vw, 56px)' }}>
+      <h2 className="font-display text-brand-900 text-center leading-[1.05] text-balance break-words max-w-3xl mx-auto px-4 mb-7"
+        style={{ fontSize: 'clamp(24px, 4.5vw, 52px)' }}>
         {title}
       </h2>
       <div className="bg-brand-900 rounded-3xl p-6 md:p-10">

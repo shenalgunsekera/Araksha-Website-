@@ -110,11 +110,12 @@ const generalPartners = [
 function PartnerPanel({ title, logos }: { title: string; logos: { src: string; alt: string }[] }) {
   return (
     <div className="mb-12 last:mb-0">
-      <div className="text-center mb-7">
+      <div className="text-center mb-7 px-4">
         <span className="inline-block font-body text-[11px] font-bold tracking-widest uppercase bg-brand-400 text-white rounded-full px-5 py-1.5 mb-4">
           Insurance
         </span>
-        <h3 className="font-display text-brand-900 leading-none" style={{ fontSize: 'clamp(30px, 4vw, 56px)' }}>
+        <h3 className="font-display text-brand-900 leading-[1.05] text-balance break-words max-w-3xl mx-auto"
+          style={{ fontSize: 'clamp(24px, 4.5vw, 52px)' }}>
           {title}
         </h3>
       </div>
