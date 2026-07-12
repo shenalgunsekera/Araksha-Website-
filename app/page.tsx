@@ -107,13 +107,15 @@ const generalPartners = [
 ];
 
 /* Navy showcase panel with white logo tiles — the "cool design" treatment */
-function PartnerPanel({ title, logos }: { title: string; logos: { src: string; alt: string }[] }) {
+function PartnerPanel({ title, logos, badge = false }: { title: string; logos: { src: string; alt: string }[]; badge?: boolean }) {
   return (
     <div className="mb-12 last:mb-0">
       <div className="text-center mb-7 px-4">
-        <span className="inline-block font-body text-[11px] font-bold tracking-widest uppercase bg-brand-400 text-white rounded-full px-5 py-1.5 mb-4">
-          Insurance
-        </span>
+        {badge && (
+          <span className="inline-block font-body text-[11px] font-bold tracking-widest uppercase bg-brand-400 text-white rounded-full px-5 py-1.5 mb-4">
+            Insurance
+          </span>
+        )}
         <h3 className="font-display text-brand-900 leading-[1.05] text-balance break-words max-w-3xl mx-auto"
           style={{ fontSize: 'clamp(24px, 4.5vw, 52px)' }}>
           {title}
@@ -360,7 +362,7 @@ export default function Home() {
       {/* ── Partners — Life & General showcase panels ── */}
       <section className="py-16 md:py-24 border-b border-gray-800">
         <div className="max-w-[1400px] mx-auto px-6 md:px-8">
-          <Reveal><PartnerPanel title="OUR LIFE INSURANCE PARTNERS" logos={lifePartners} /></Reveal>
+          <Reveal><PartnerPanel title="OUR LIFE INSURANCE PARTNERS" logos={lifePartners} badge /></Reveal>
           <Reveal><PartnerPanel title="OUR GENERAL INSURANCE PARTNERS" logos={generalPartners} /></Reveal>
           <div className="text-center mt-10">
             <Link href="/partners" className="font-body text-sm text-brand hover:underline">Learn more about our partners →</Link>
